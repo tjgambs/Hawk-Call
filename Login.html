@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Log in</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <script type = "text/javascript">
+
+// Note: Like all Javascript password scripts, this is hopelessly insecure as the user can see 
+//the valid usernames/passwords and the redirect url simply with View Source.  
+// And the user can obtain another three tries simply by refreshing the page.  
+//So do not use for anything serious!
+
+var count = 2;
+function validate() {
+var un = document.myform.username.value;
+var pw = document.myform.pword.value;
+var valid = false;
+
+var unArray = ["Philip", "George", "Sarah", "Michael"];  // as many as you like - no comma after final entry
+var pwArray = ["Password1", "Password2", "Password3", "Password4"];  // the corresponding passwords;
+
+for (var i=0; i <unArray.length; i++) {
+if ((un == unArray[i]) && (pw == pwArray[i])) {
+valid = true;
+break;
+}
+}
+
+if (valid) {
+alert ("Login was successful");
+window.location = "ChatRoom.html";
+return false;
+}
+
+var t = " tries";
+if (count == 1) {t = " try"}
+
+if (count >= 1) {
+alert ("Invalid username and/or password.  You have " + count + t + " left.");
+document.myform.pword.value = "";
+setTimeout("document.myform.username.focus()", 25);
+setTimeout("document.myform.username.select()", 25);
+count --;
+}
+
+else {
+alert ("Still incorrect! You have no more tries left!");
+document.myform.username.value = "No more tries allowed!";
+document.myform.pword.value = "";
+document.myform.username.disabled = true;
+document.myform.pword.disabled = true;
+return false;
+}
+
+}
+
+</script>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="Start.html">Hawk Call</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="Start.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="ChatRoom.html">Chat Rooms</a></li>
+                
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" id="inputEmail" class="form-control" name"username" placeholder="myName@maine207south.org" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="text" id="inputPassword" name"pword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <input type="button" value="Button" name="Submit" onclick= "validate()">
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
